@@ -29,42 +29,42 @@ app.post('/users/login', function(req, res){
     return userHandler.login(req.body, res)
     .then(function(result){
       return result
-    }).catch(err => {errorHandler(err, res)})  
-  })  
+    }).catch(err => {errorHandler(err, res)})
+  })
 
   app.post('/users/register', function(req, res){
     return userHandler.register(req.body, res)
     .then(function(result){
       return result
-    }).catch(err => {errorHandler(err, res)})  
-  })  
+    }).catch(err => {errorHandler(err, res)})
+  })
 
   app.get('/users', authorize(Role.Admin), function(req, res){
     return userHandler.getUsers()
     .then(function(result){
       return res.status(200).json(result)
-    }).catch(err => {errorHandler(err, res)})  
-  })  
+    }).catch(err => {errorHandler(err, res)})
+  })
 
   app.get('/users/:user_id', authorize(), function(req, res){
     return userHandler.getOneUser(req.user, req.params.user_id, res)
     .then(function(result){
       return result
-    }).catch(err => {errorHandler(err, res)})  
-  })  
+    }).catch(err => {errorHandler(err, res)})
+  })
 
   app.delete('/users/:user_id', authorize(), function(req, res){
     return userHandler.deleteUser(req.user, req.params.user_id, res)
     .then(function(result){
       return result
-    }).catch(err => {errorHandler(err, res)})  
-  })  
+    }).catch(err => {errorHandler(err, res)})
+  })
 
   app.put('/users/:user_id', authorize(), function(req, res){
     return userHandler.modifyUser(req.user, req.params.user_id, req.body, res)
     .then(function(result){
       return result
-    }).catch(err => {errorHandler(err, res)})  
+    }).catch(err => {errorHandler(err, res)})
   })
 
   app.listen(APP_SETTINGS.port, () => {
